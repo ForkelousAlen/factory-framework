@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://ceu4xejqr8xch"]
+
+[ext_resource type="Script" uid="uid://bw20e04ydb3nf" path="res://scripts/framework/machine.gd" id="1_mwwen"]
+[ext_resource type="Texture2D" uid="uid://bdqf0nxxesjfu" path="res://icon.svg" id="2_10ox5"]
+[ext_resource type="Script" uid="uid://bhq2b1xvcm5qd" path="res://scripts/utilities/god_hand_mouse.gd" id="3_s30tc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_s30tc"]
+diffuse_texture = ExtResource("2_10ox5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwwen"]
+size = Vector2(38.5, 38.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_10ox5"]
+size = Vector2(84, 38)
+
+[node name="Sence" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(83, 54)
+input_pickable = true
+script = ExtResource("1_mwwen")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(0.3, 0.3)
+texture = SubResource("CanvasTexture_s30tc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-0.25, 0.25)
+shape = SubResource("RectangleShape2D_mwwen")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(130, 109)
+input_pickable = true
+gravity_scale = 0.0
+script = ExtResource("1_mwwen")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D2"]
+scale = Vector2(0.66000485, 0.3)
+texture = SubResource("CanvasTexture_s30tc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+shape = SubResource("RectangleShape2D_10ox5")
+
+[node name="GodHandMouse" type="StaticBody2D" parent="."]
+script = ExtResource("3_s30tc")
+
+[node name="RayCast2D" type="RayCast2D" parent="GodHandMouse"]
+position = Vector2(24, 17)
+hit_from_inside = true
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="GodHandMouse"]
+position = Vector2(24, 17)
+node_b = NodePath("..")
+length = 1.0
+stiffness = 50.0
+damping = 2.5
