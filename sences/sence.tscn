@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceu4xejqr8xch"]
+[gd_scene load_steps=6 format=3 uid="uid://ceu4xejqr8xch"]
 
 [ext_resource type="Script" uid="uid://bw20e04ydb3nf" path="res://scripts/framework/machine.gd" id="1_mwwen"]
 [ext_resource type="Texture2D" uid="uid://bdqf0nxxesjfu" path="res://icon.svg" id="2_10ox5"]
@@ -7,38 +7,25 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_s30tc"]
 diffuse_texture = ExtResource("2_10ox5")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwwen"]
-size = Vector2(38.5, 38.5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10ox5"]
-size = Vector2(84, 38)
+size = Vector2(130, 127)
 
 [node name="Sence" type="Node2D"]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(83, 54)
-input_pickable = true
-script = ExtResource("1_mwwen")
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-scale = Vector2(0.3, 0.3)
-texture = SubResource("CanvasTexture_s30tc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-0.25, 0.25)
-shape = SubResource("RectangleShape2D_mwwen")
-
-[node name="RigidBody2D2" type="RigidBody2D" parent="."]
-position = Vector2(130, 109)
-input_pickable = true
+[node name="Machine" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
 script = ExtResource("1_mwwen")
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D2"]
-scale = Vector2(0.66000485, 0.3)
+[node name="Sprite2D" type="Sprite2D" parent="Machine"]
 texture = SubResource("CanvasTexture_s30tc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Machine"]
+position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_10ox5")
 
 [node name="GodHandMouse" type="StaticBody2D" parent="."]
