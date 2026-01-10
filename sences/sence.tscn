@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ceu4xejqr8xch"]
+[gd_scene load_steps=7 format=3 uid="uid://ceu4xejqr8xch"]
 
 [ext_resource type="Script" uid="uid://bw20e04ydb3nf" path="res://scripts/framework/machine.gd" id="1_mwwen"]
 [ext_resource type="Texture2D" uid="uid://bdqf0nxxesjfu" path="res://icon.svg" id="2_10ox5"]
 [ext_resource type="Script" uid="uid://bhq2b1xvcm5qd" path="res://scripts/utilities/god_hand_mouse.gd" id="3_s30tc"]
+[ext_resource type="Script" uid="uid://borc851ookd4b" path="res://scripts/utilities/god_eye_keyboard.gd" id="4_mlc6j"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_s30tc"]
 diffuse_texture = ExtResource("2_10ox5")
@@ -11,11 +12,6 @@ diffuse_texture = ExtResource("2_10ox5")
 size = Vector2(130, 127)
 
 [node name="Sence" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
-editor_draw_limits = true
-editor_draw_drag_margin = true
 
 [node name="Machine" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
@@ -41,3 +37,19 @@ node_b = NodePath("..")
 length = 1.0
 stiffness = 50.0
 damping = 2.5
+
+[node name="Sprite2D" type="Sprite2D" parent="GodHandMouse"]
+scale = Vector2(0.155, 0.155)
+texture = ExtResource("2_10ox5")
+
+[node name="GodEyeKeyboard" type="Node2D" parent="."]
+script = ExtResource("4_mlc6j")
+
+[node name="Camera2D" type="Camera2D" parent="GodEyeKeyboard"]
+ignore_rotation = false
+zoom = Vector2(1.5, 1.5)
+limit_enabled = false
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true

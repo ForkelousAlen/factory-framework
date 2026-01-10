@@ -16,10 +16,6 @@ func _input(event: InputEvent):
 
 func get_mouse_global_position():
 	var viewport = get_viewport()
-	var camera = viewport.get_camera_2d()
 	var mouse_screen_pos = viewport.get_mouse_position()
-	var viewport_size = viewport.get_visible_rect().size
-	var mouse_global_pos = \
-		viewport.global_canvas_transform * \
-		((mouse_screen_pos - viewport_size / 2) / camera.zoom)
+	var mouse_global_pos = viewport.get_canvas_transform().affine_inverse() * mouse_screen_pos
 	return mouse_global_pos
