@@ -60,4 +60,5 @@ zoom_large={
 
 [rendering]
 
+textures/canvas_textures/default_texture_repeat=1
 renderer/rendering_method="mobile"

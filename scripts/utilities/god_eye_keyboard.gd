@@ -2,9 +2,12 @@ extends Node2D
 
 @onready var camera: Camera2D = $Camera2D
 
-@export var move_speed: float = 300.
-@export var rotate_speed: float = 100.
-@export var zoom_speed: float = 1.
+@export 
+var move_speed: float = 300.
+@export 
+var rotate_speed: float = 100.
+@export 
+var zoom_speed: float = 1.
 
 
 func _ready() -> void:
