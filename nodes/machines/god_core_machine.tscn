@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dundhpvy2eluo"]
+
+[ext_resource type="Script" uid="uid://bw20e04ydb3nf" path="res://scripts/framework/machine.gd" id="1_l7fiu"]
+[ext_resource type="Texture2D" uid="uid://kdqo0pbu2sfq" path="res://sprites/machines/god_core/god_core.png" id="2_m8gps"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_10ox5"]
+size = Vector2(108, 108)
+
+[node name="GodCoreMachine" type="RigidBody2D"]
+mass = 20.0
+gravity_scale = 0.0
+script = ExtResource("1_l7fiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m8gps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_10ox5")

@@ -1,21 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://ceu4xejqr8xch"]
+[gd_scene load_steps=10 format=3 uid="uid://ceu4xejqr8xch"]
 
-[ext_resource type="Script" uid="uid://bw20e04ydb3nf" path="res://scripts/framework/machine.gd" id="1_mwwen"]
-[ext_resource type="Texture2D" uid="uid://bdqf0nxxesjfu" path="res://icon.svg" id="2_10ox5"]
 [ext_resource type="Script" uid="uid://bhq2b1xvcm5qd" path="res://scripts/utilities/god_hand_mouse.gd" id="3_s30tc"]
-[ext_resource type="Texture2D" uid="uid://tor0ubccg1ex" path="res://sprites/ui/god_hand/god_hand-normal.png" id="4_7lhec"]
+[ext_resource type="Texture2D" uid="uid://tor0ubccg1ex" path="res://sprites/uis/god_hand/god_hand-normal.png" id="4_7lhec"]
 [ext_resource type="Script" uid="uid://borc851ookd4b" path="res://scripts/utilities/god_eye_keyboard.gd" id="4_mlc6j"]
-[ext_resource type="Texture2D" uid="uid://dce45kasn4tg7" path="res://sprites/ui/god_hand/god_hand-grab.png" id="5_q2cwb"]
-[ext_resource type="Texture2D" uid="uid://cojg8f3yvuxix" path="res://sprites/pipe/test-pipe.png" id="7_j01pr"]
+[ext_resource type="Script" uid="uid://cxlj5qtbjgrjj" path="res://scripts/utilities/god_workbench.gd" id="5_3rvfh"]
+[ext_resource type="Texture2D" uid="uid://dce45kasn4tg7" path="res://sprites/uis/god_hand/god_hand-grab.png" id="5_q2cwb"]
+[ext_resource type="PackedScene" uid="uid://dundhpvy2eluo" path="res://nodes/machines/god_core_machine.tscn" id="6_3rvfh"]
+[ext_resource type="Texture2D" uid="uid://cojg8f3yvuxix" path="res://sprites/pipes/test-pipe.png" id="7_j01pr"]
+[ext_resource type="PackedScene" uid="uid://dqt4gdx80sva0" path="res://nodes/machines/fuelment_furnace_machine.tscn" id="7_l7viq"]
 [ext_resource type="Script" uid="uid://nhuwrpw7akm1" path="res://scripts/framework/pipe.gd" id="7_q2cwb"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_s30tc"]
-diffuse_texture = ExtResource("2_10ox5")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_10ox5"]
-size = Vector2(130, 127)
-
 [node name="Sence" type="Node2D"]
+
+[node name="GameUI" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="GameUI"]
+offset_left = 68.0
+offset_top = 549.0
+offset_right = 76.0
+offset_bottom = 557.0
+scale = Vector2(13.966459, 5.7599454)
 
 [node name="GodHandMouse" type="StaticBody2D" parent="."]
 script = ExtResource("3_s30tc")
@@ -24,11 +28,9 @@ grab_texture = ExtResource("5_q2cwb")
 texture_scale = 0.6
 
 [node name="RayCast2D" type="RayCast2D" parent="GodHandMouse"]
-position = Vector2(24, 17)
 hit_from_inside = true
 
 [node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="GodHandMouse"]
-position = Vector2(24, 17)
 node_b = NodePath("..")
 length = 1.0
 stiffness = 50.0
@@ -47,29 +49,16 @@ limit_enabled = false
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
-[node name="Machine" type="RigidBody2D" parent="."]
-position = Vector2(100, 0)
-gravity_scale = 0.0
-script = ExtResource("1_mwwen")
+[node name="GodWorkbench" type="Node2D" parent="."]
+script = ExtResource("5_3rvfh")
 
-[node name="Sprite2D" type="Sprite2D" parent="Machine"]
-texture = SubResource("CanvasTexture_s30tc")
+[node name="RayCast2D" type="RayCast2D" parent="GodWorkbench"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Machine"]
-position = Vector2(1, -0.5)
-shape = SubResource("RectangleShape2D_10ox5")
+[node name="GodCoreMachine" parent="." instance=ExtResource("6_3rvfh")]
+position = Vector2(-223, -56)
 
-[node name="Machine2" type="RigidBody2D" parent="."]
-position = Vector2(300, 0)
-gravity_scale = 0.0
-script = ExtResource("1_mwwen")
-
-[node name="Sprite2D" type="Sprite2D" parent="Machine2"]
-texture = SubResource("CanvasTexture_s30tc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Machine2"]
-position = Vector2(1, -0.5)
-shape = SubResource("RectangleShape2D_10ox5")
+[node name="FuelmentFurnaceMachine" parent="." instance=ExtResource("7_l7viq")]
+position = Vector2(63, -59)
 
 [node name="Pipe" type="Line2D" parent="." node_paths=PackedStringArray("machine_a", "machine_b")]
 z_index = -1
@@ -77,8 +66,11 @@ width = 50.0
 texture = ExtResource("7_j01pr")
 texture_mode = 1
 script = ExtResource("7_q2cwb")
-machine_a = NodePath("../Machine")
-machine_b = NodePath("../Machine2")
+machine_a = NodePath("../GodCoreMachine")
+machine_b = NodePath("../FuelmentFurnaceMachine")
 metadata/_custom_type_script = "uid://nhuwrpw7akm1"
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Pipe"]
+angular_limit_enabled = true
+angular_limit_lower = -0.08726646
+angular_limit_upper = 0.08726646

@@ -1,11 +1,17 @@
 extends Node2D
 
+@onready 
+var raycast: RayCast2D = $RayCast2D
 
-# Called when the node enters the scene tree for the first time.
+var machine_a: Machine
+var machine_b: Machine
+
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+	
+	

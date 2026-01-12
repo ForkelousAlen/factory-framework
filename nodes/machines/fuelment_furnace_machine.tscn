@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqt4gdx80sva0"]
+
+[ext_resource type="Script" uid="uid://bw20e04ydb3nf" path="res://scripts/framework/machine.gd" id="1_44eei"]
+[ext_resource type="Texture2D" uid="uid://bt7dmwuagto4k" path="res://sprites/machines/fuelment_furnace/fuelment_furnace-1.png" id="2_63hnx"]
+[ext_resource type="Texture2D" uid="uid://rsnuckgc7ve8" path="res://sprites/machines/fuelment_furnace/fuelment_furnace-2.png" id="3_3jk6k"]
+[ext_resource type="Texture2D" uid="uid://t4mrnyetsisw" path="res://sprites/machines/fuelment_furnace/fuelment_furnace-3.png" id="4_jue2m"]
+[ext_resource type="Texture2D" uid="uid://dwalo36ex5nvq" path="res://sprites/machines/fuelment_furnace/fuelment_furnace-4.png" id="5_f4ebn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ydwte"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_63hnx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3jk6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jue2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f4ebn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_10ox5"]
+size = Vector2(68, 68)
+
+[node name="FuelmentFurnaceMachine" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_44eei")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ydwte")
+frame_progress = 0.45989352
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_10ox5")

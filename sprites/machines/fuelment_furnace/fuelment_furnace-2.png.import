@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dce45kasn4tg7"
-path="res://.godot/imported/god_hand-grab.png-904c71888eb01d36ad109ba73c970c4f.ctex"
+uid="uid://rsnuckgc7ve8"
+path="res://.godot/imported/fuelment_furnace-2.png-bcac82640867a937e65e10e3ad5ed532.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ui/god_hand/god_hand-grab.png"
-dest_files=["res://.godot/imported/god_hand-grab.png-904c71888eb01d36ad109ba73c970c4f.ctex"]
+source_file="res://sprites/machines/fuelment_furnace/fuelment_furnace-2.png"
+dest_files=["res://.godot/imported/fuelment_furnace-2.png-bcac82640867a937e65e10e3ad5ed532.ctex"]
 
 [params]
 

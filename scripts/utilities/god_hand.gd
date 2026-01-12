@@ -1,9 +1,9 @@
 class_name GodHand
 extends StaticBody2D
 
-@onready 
+@onready
 var raycast: RayCast2D = $RayCast2D
-@onready 
+@onready
 var drag_spring: DampedSpringJoint2D = $DampedSpringJoint2D
 
 var original_gravity_scale: float
