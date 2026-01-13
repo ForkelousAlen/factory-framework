@@ -10,8 +10,10 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	pass
-
-
-	
-	
+	if Input.is_action_pressed("select"):
+		global_position = Utilities.get_mouse_global_position(self)
+		raycast.force_raycast_update()
+		if raycast.is_colliding():
+			var machine := raycast.get_collider() as Machine
+			if machine != null:
+				machine.selected()

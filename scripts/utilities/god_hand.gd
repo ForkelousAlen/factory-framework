@@ -23,10 +23,9 @@ func _process(_delta: float) -> void:
 	pass
 
 func start_grab(grab_position: Vector2):
-	raycast.global_position = grab_position
+	global_position = grab_position
 	raycast.target_position = Vector2.ZERO
 	raycast.force_raycast_update()
-
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
 		if collider is RigidBody2D:

@@ -26,3 +26,15 @@ func connect_pipe() -> bool:
 ## Machine对资源的获取采取“拉式模式”，即目标Machine主动向源Machine索取资源。
 func resource_port(amount: float):
 	pass
+
+## Machine对象被选中的调用函数
+func selected():
+	var sprite: Sprite2D = $Sprite2D
+	if sprite != null:
+		sprite.modulate = Color.RED
+
+## Machine对象被取消选中的调用函数
+func cancel_selected():
+	var sprite: Sprite2D = $Sprite2D
+	if sprite != null:
+		sprite.modulate = Color.WHITE

@@ -2,7 +2,15 @@ class_name Pipe
 extends Line2D
 
 @onready
-var joint: PinJoint2D = $PinJoint2D
+var pin_body_a: RigidBody2D = $PinBodyA
+@onready
+var pin_body_b: RigidBody2D = $PinBodyB
+@onready
+var pin_joint_a: PinJoint2D = $PinJointA
+@onready
+var pin_joint_b: PinJoint2D = $PinJointB
+@onready
+var spring_joint: DampedSpringJoint2D = $SpringJoint
 
 @export
 var machine_a: Machine
@@ -22,11 +30,24 @@ func _process(_delta: float) -> void:
 	points = new_points
 
 ## 将MachineA与MachineB通过该Pipe进行连接
-func connect_machine(a: Machine, b: Machine):
-	a.add_child(self)
-	joint.global_position = a.global_position
-	joint.node_a = a.get_path()
-	joint.node_b = b.get_path()
+func connect_machine(a: Machine, b: Machine):	
+	pin_body_a.global_position = a.global_position
+	pin_body_b.global_position = b.global_position
+	pin_joint_a.global_position = a.global_position
+	pin_joint_b.global_position = b.global_position
+	pin_joint_a.node_a = a.get_path()
+	pin_joint_a.node_b = pin_body_a.get_path()
+	pin_joint_b.node_a = b.get_path()
+	pin_joint_b.node_b = pin_body_b.get_path()
+	
+	var delta_pos = b.global_position - a.global_position
+	var spring_len = delta_pos.length()
+	var angle = delta_pos.angle() - PI / 2
+	spring_joint.global_position = pin_body_a.global_position
+	spring_joint.length = spring_len
+	spring_joint.global_rotation = angle
+	spring_joint.node_a = pin_body_a.get_path()
+	spring_joint.node_b = pin_body_b.get_path()
 
 ## Pipe提供给Machine调用的资源拉取接口
 func resource_request(requester: Machine, amount: float):
