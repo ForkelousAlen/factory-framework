@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dqt4gdx80sva0"]
 
-[ext_resource type="Script" uid="uid://bw20e04ydb3nf" path="res://scripts/framework/machine.gd" id="1_44eei"]
+[ext_resource type="Script" uid="uid://btm73hnjq7vi5" path="res://scripts/machines/fuelment_furnace_machine.gd" id="1_44eei"]
 [ext_resource type="Texture2D" uid="uid://bt7dmwuagto4k" path="res://sprites/machines/fuelment_furnace/fuelment_furnace-1.png" id="2_63hnx"]
 [ext_resource type="Texture2D" uid="uid://rsnuckgc7ve8" path="res://sprites/machines/fuelment_furnace/fuelment_furnace-2.png" id="3_3jk6k"]
 [ext_resource type="Texture2D" uid="uid://t4mrnyetsisw" path="res://sprites/machines/fuelment_furnace/fuelment_furnace-3.png" id="4_jue2m"]

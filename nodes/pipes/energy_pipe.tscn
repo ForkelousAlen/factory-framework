@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxvkopioofx3q"]
+
+[ext_resource type="Texture2D" uid="uid://bx0vkbwaduuas" path="res://sprites/pipes/energy_pipe_E1.png" id="1_ngx3q"]
+[ext_resource type="Script" uid="uid://bee01y4xqjcd" path="res://scripts/pipes/energy_pipe.gd" id="2_qxqgb"]
+
+[node name="EnergyPipe" type="Line2D" node_paths=PackedStringArray("ma", "mb")]
+z_index = -1
+width = 50.0
+texture = ExtResource("1_ngx3q")
+texture_mode = 1
+script = ExtResource("2_qxqgb")
+ma = NodePath("")
+mb = NodePath("")
+
+[node name="SpringJoint" type="DampedSpringJoint2D" parent="."]

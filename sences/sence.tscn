@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ceu4xejqr8xch"]
+[gd_scene load_steps=9 format=3 uid="uid://ceu4xejqr8xch"]
 
 [ext_resource type="Script" uid="uid://bhq2b1xvcm5qd" path="res://scripts/utilities/god_hand_mouse.gd" id="3_s30tc"]
 [ext_resource type="Texture2D" uid="uid://doqx7ep8rswg1" path="res://sprites/uis/god_hand/god_hand-normal.png" id="4_7lhec"]
@@ -7,8 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d3a8obl4c7v80" path="res://sprites/uis/god_hand/god_hand-grab.png" id="5_q2cwb"]
 [ext_resource type="PackedScene" uid="uid://dundhpvy2eluo" path="res://nodes/machines/god_core_machine.tscn" id="6_3rvfh"]
 [ext_resource type="PackedScene" uid="uid://dqt4gdx80sva0" path="res://nodes/machines/fuelment_furnace_machine.tscn" id="7_l7viq"]
-[ext_resource type="Script" uid="uid://nhuwrpw7akm1" path="res://scripts/framework/pipe.gd" id="7_q2cwb"]
-[ext_resource type="Texture2D" uid="uid://bx0vkbwaduuas" path="res://sprites/pipes/energy_pipe_E1.png" id="8_3rvfh"]
+[ext_resource type="PackedScene" uid="uid://dxvkopioofx3q" path="res://nodes/pipes/energy_pipe.tscn" id="8_q2cwb"]
 
 [node name="Sence" type="Node2D"]
 
@@ -55,29 +54,9 @@ target_position = Vector2(0, 0)
 hit_from_inside = true
 
 [node name="GodCoreMachine" parent="." instance=ExtResource("6_3rvfh")]
-position = Vector2(-223, -56)
+position = Vector2(-223, 0)
 
 [node name="FuelmentFurnaceMachine" parent="." instance=ExtResource("7_l7viq")]
-position = Vector2(-28, 78)
+position = Vector2(-28, 0)
 
-[node name="Pipe" type="Line2D" parent="." node_paths=PackedStringArray("machine_a", "machine_b")]
-z_index = -1
-width = 50.0
-texture = ExtResource("8_3rvfh")
-texture_mode = 1
-script = ExtResource("7_q2cwb")
-machine_a = NodePath("../GodCoreMachine")
-machine_b = NodePath("../FuelmentFurnaceMachine")
-metadata/_custom_type_script = "uid://nhuwrpw7akm1"
-
-[node name="PinBodyA" type="RigidBody2D" parent="Pipe"]
-gravity_scale = 0.0
-
-[node name="PinBodyB" type="RigidBody2D" parent="Pipe"]
-gravity_scale = 0.0
-
-[node name="PinJointA" type="PinJoint2D" parent="Pipe"]
-
-[node name="PinJointB" type="PinJoint2D" parent="Pipe"]
-
-[node name="SpringJoint" type="DampedSpringJoint2D" parent="Pipe"]
+[node name="EnergyPipe" parent="." instance=ExtResource("8_q2cwb")]
