@@ -56,7 +56,11 @@ hit_from_inside = true
 [node name="GodCoreMachine" parent="." instance=ExtResource("6_3rvfh")]
 position = Vector2(-223, 0)
 
-[node name="FuelmentFurnaceMachine" parent="." instance=ExtResource("7_l7viq")]
-position = Vector2(-28, 0)
+[node name="GodCoreMachine2" parent="." instance=ExtResource("6_3rvfh")]
 
-[node name="EnergyPipe" parent="." instance=ExtResource("8_q2cwb")]
+[node name="FuelmentFurnaceMachine" parent="." instance=ExtResource("7_l7viq")]
+position = Vector2(163, -71)
+
+[node name="EnergyPipe" parent="." node_paths=PackedStringArray("ma", "mb") instance=ExtResource("8_q2cwb")]
+ma = NodePath("../GodCoreMachine")
+mb = NodePath("../GodCoreMachine2")

@@ -3,13 +3,14 @@ class_name Pipe
 extends Line2D
 
 enum Direction {
-	IN, 
-	OUT,
+	IMPORT, 
+	EXPORT,
 	BIDIRECTION,
 }
 
 enum Type {
 	ENERGY,
+	FUELMENT,
 }
 
 @export
@@ -31,12 +32,15 @@ func _process(_delta: float) -> void:
 	points = new_points
 
 ## 将MachineA与MachineB通过该Pipe进行连接
+## 返回是否连接成功
 @abstract
-func connect_machine(a: Machine, b: Machine)
+func connect_machine(a: Machine, b: Machine) -> bool
 
 ## Pipe提供给Machine调用的资源拉取接口
-func pull_substance(requester: Machine, amount: float):
+func pull_substance(requester: Machine, amount: float) -> float:
 	if requester == _machine_a:
-		_machine_b.resource_port(_connect_id_b, amount)
+		return _machine_b.resource_port(_connect_id_b, amount)
 	elif requester == _machine_b:
-		_machine_a.resource_port(_connect_id_a, amount)
+		return _machine_a.resource_port(_connect_id_a, amount)
+	else:
+		return 0.

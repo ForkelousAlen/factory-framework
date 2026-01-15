@@ -6,6 +6,9 @@ var ma: Machine
 var mb: Machine
 
 
+func _init() -> void:
+	type = Type.ENERGY
+
 func _ready() -> void:
 	connect_machine(ma, mb)
 
