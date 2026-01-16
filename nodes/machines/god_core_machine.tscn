@@ -8,7 +8,6 @@ size = Vector2(108, 108)
 
 [node name="GodCoreMachine" type="RigidBody2D"]
 mass = 20.0
-gravity_scale = 0.0
 script = ExtResource("1_l7fiu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

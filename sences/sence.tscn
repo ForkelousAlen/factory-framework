@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ceu4xejqr8xch"]
+[gd_scene load_steps=16 format=3 uid="uid://ceu4xejqr8xch"]
 
 [ext_resource type="Script" uid="uid://bhq2b1xvcm5qd" path="res://scripts/utilities/god_hand_mouse.gd" id="3_s30tc"]
 [ext_resource type="Texture2D" uid="uid://doqx7ep8rswg1" path="res://sprites/uis/god_hand/god_hand-normal.png" id="4_7lhec"]
@@ -8,6 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://dundhpvy2eluo" path="res://nodes/machines/god_core_machine.tscn" id="6_3rvfh"]
 [ext_resource type="PackedScene" uid="uid://dqt4gdx80sva0" path="res://nodes/machines/fuelment_furnace_machine.tscn" id="7_l7viq"]
 [ext_resource type="PackedScene" uid="uid://dxvkopioofx3q" path="res://nodes/pipes/energy_pipe.tscn" id="8_q2cwb"]
+[ext_resource type="Script" uid="uid://bpo0mbp3dgusb" path="res://scripts/substances/fuelment.gd" id="9_l7viq"]
+[ext_resource type="Texture2D" uid="uid://bdqf0nxxesjfu" path="res://icon.svg" id="10_2ppx5"]
+[ext_resource type="Script" uid="uid://doesfybu7o8l6" path="res://scripts/machines/substance_collector.gd" id="11_bahr5"]
+[ext_resource type="Texture2D" uid="uid://cdvq7mr1jxkgg" path="res://sprites/machines/substance_collector/substance_collector.png" id="12_ef3nr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bahr5"]
+size = Vector2(42, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e0co"]
+size = Vector2(44, 38)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qsqi5"]
+radius = 44.0
 
 [node name="Sence" type="Node2D"]
 
@@ -41,7 +54,6 @@ script = ExtResource("4_mlc6j")
 
 [node name="Camera2D" type="Camera2D" parent="GodEyeKeyboard"]
 ignore_rotation = false
-zoom = Vector2(1.5, 1.5)
 limit_enabled = false
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
@@ -64,3 +76,35 @@ position = Vector2(163, -71)
 [node name="EnergyPipe" parent="." node_paths=PackedStringArray("ma", "mb") instance=ExtResource("8_q2cwb")]
 ma = NodePath("../GodCoreMachine")
 mb = NodePath("../GodCoreMachine2")
+
+[node name="FuelmentM" type="RigidBody2D" parent="."]
+position = Vector2(198, 81)
+mass = 0.5
+script = ExtResource("9_l7viq")
+type = 1
+amount = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="FuelmentM"]
+scale = Vector2(0.335, 0.335)
+texture = ExtResource("10_2ppx5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FuelmentM"]
+shape = SubResource("RectangleShape2D_bahr5")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(46, 131)
+script = ExtResource("11_bahr5")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(2, -6)
+texture = ExtResource("12_ef3nr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_2e0co")
+
+[node name="DetectionArea" type="Area2D" parent="RigidBody2D"]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/DetectionArea"]
+shape = SubResource("CircleShape2D_qsqi5")
+debug_color = Color(0.5450537, 0.5660549, 0, 0.41960785)

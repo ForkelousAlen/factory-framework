@@ -30,7 +30,6 @@ animations = [{
 size = Vector2(68, 68)
 
 [node name="FuelmentFurnaceMachine" type="RigidBody2D"]
-gravity_scale = 0.0
 script = ExtResource("1_44eei")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
