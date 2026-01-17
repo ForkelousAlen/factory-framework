@@ -22,7 +22,7 @@ animations = [{
 "texture": ExtResource("5_f4ebn")
 }],
 "loop": true,
-"name": &"default",
+"name": &"work",
 "speed": 3.0
 }]
 
@@ -34,7 +34,8 @@ script = ExtResource("1_44eei")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ydwte")
-frame_progress = 0.45989352
+animation = &"work"
+frame_progress = 0.5916311
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_10ox5")

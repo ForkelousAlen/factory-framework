@@ -1,14 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxvkopioofx3q"]
+[gd_scene load_steps=10 format=3 uid="uid://dxvkopioofx3q"]
 
-[ext_resource type="Texture2D" uid="uid://bx0vkbwaduuas" path="res://sprites/pipes/energy_pipe_E1.png" id="1_ngx3q"]
 [ext_resource type="Script" uid="uid://bee01y4xqjcd" path="res://scripts/pipes/energy_pipe.gd" id="2_qxqgb"]
+[ext_resource type="Texture2D" uid="uid://c5y0a88uarsue" path="res://sprites/pipes/energy_pipe_E1/energy_pipe_E1-1.png" id="2_rfkmm"]
+[ext_resource type="Texture2D" uid="uid://jo0twgc5xmfw" path="res://sprites/pipes/energy_pipe_E1/energy_pipe_E1-2.png" id="3_g8tth"]
+[ext_resource type="Texture2D" uid="uid://5c2xeixl0cut" path="res://sprites/pipes/energy_pipe_E1/energy_pipe_E1-3.png" id="4_4cguw"]
+[ext_resource type="Texture2D" uid="uid://b7gfas0dmjeln" path="res://sprites/pipes/energy_pipe_E1/energy_pipe_E1-4.png" id="5_ewd20"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r3f46"]
+load_path = "res://.godot/imported/energy_pipe_E1.png-3a0c81ca45e68f4d9abe427d9b6a9532.ctex"
+
+[sub_resource type="Animation" id="Animation_rfkmm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CompressedTexture2D_r3f46")]
+}
+
+[sub_resource type="Animation" id="Animation_l4u51"]
+resource_name = "transport"
+length = 1.332
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333, 0.666, 0.999),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_rfkmm"), ExtResource("3_g8tth"), ExtResource("4_4cguw"), ExtResource("5_ewd20")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g8tth"]
+_data = {
+&"RESET": SubResource("Animation_rfkmm"),
+&"transport": SubResource("Animation_l4u51")
+}
 
 [node name="EnergyPipe" type="Line2D"]
 z_index = -1
-width = 50.0
-texture = ExtResource("1_ngx3q")
+width = 35.0
+texture = SubResource("CompressedTexture2D_r3f46")
 texture_mode = 1
 script = ExtResource("2_qxqgb")
 
 [node name="SpringJoint" type="DampedSpringJoint2D" parent="."]
 disable_collision = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g8tth")
+}

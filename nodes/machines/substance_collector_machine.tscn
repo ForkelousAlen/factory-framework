@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://js4efws0eolj"]
+
+[ext_resource type="Script" uid="uid://doesfybu7o8l6" path="res://scripts/machines/substance_collector_machine.gd" id="1_5ehh3"]
+[ext_resource type="Texture2D" uid="uid://cdvq7mr1jxkgg" path="res://sprites/machines/substance_collector/substance_collector.png" id="2_0v3te"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e0co"]
+size = Vector2(44, 38)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qsqi5"]
+radius = 44.0
+
+[node name="SubstanceCollectorMachine" type="RigidBody2D"]
+script = ExtResource("1_5ehh3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -6)
+texture = ExtResource("2_0v3te")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2e0co")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_qsqi5")
+debug_color = Color(0.5450537, 0.5660549, 0, 0.41960785)

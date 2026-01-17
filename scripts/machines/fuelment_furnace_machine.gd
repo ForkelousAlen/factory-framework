@@ -14,9 +14,13 @@ var _export_pipes: Dictionary[int, Pipe] = {}
 var _export_pipe_counter: int = 0  # 管道计数
 
 
+func _ready() -> void:
+	var anima_sprite: AnimatedSprite2D = $AnimatedSprite2D
+	anima_sprite.play("work")
+
 func _process(delta: float) -> void:
 	if _import_pipe != null and energy_store < max_energy_store:
-		var amount = _import_pipe.pull_substance(self, delta * 100.)
+		var amount = _import_pipe.pull_substance(delta * 100.)
 		energy_store += amount * energy_conversion
 
 func connect_pipe(pipe: Pipe, direction: Pipe.Direction) -> ConnectResult:

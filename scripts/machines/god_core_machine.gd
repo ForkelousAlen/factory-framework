@@ -11,9 +11,6 @@ func connect_pipe(pipe: Pipe, direction: Pipe.Direction) -> ConnectResult:
 			_import_pipes[_pipe_counter] = pipe
 		Pipe.Direction.EXPORT:
 			_export_pipes[_pipe_counter] = pipe
-		Pipe.Direction.BIDIRECTION:
-			_import_pipes[_pipe_counter] = pipe
-			_export_pipes[_pipe_counter] = pipe
 	
 	var result = ConnectResult.new()
 	result.succeed = true
